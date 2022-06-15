@@ -6,50 +6,46 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.IContainerProvider;
+import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IWorldPosCallable;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraftforge.items.IItemHandlerModifiable;
-import net.minecraftforge.items.ItemStackHandler;
-import net.minecraftforge.items.SlotItemHandler;
-import net.minecraftforge.items.wrapper.InvWrapper;
+
+import java.util.Objects;
 
 
 public class PalletContainer extends Container {
 
     public static final TranslationTextComponent title = new TranslationTextComponent("container.pallet");
 
-    public static PalletContainer getClientContainer(int id, PlayerInventory playerInventory, PacketBuffer buffer) {
-        return new PalletContainer(id, new InvWrapper(playerInventory), new ItemStackHandler(18), playerInventory.player, BlockPos.ZERO);
-    }
-    public static IContainerProvider getServerContainerProvider(PalletTileEntity te, BlockPos activationPos){
-        return (id, playerInventory, serverPlayer) -> new PalletContainer(id, new InvWrapper(playerInventory), te.getInventory(), playerInventory.player, activationPos);
+    private IWorldPosCallable worldPosCallable;
+
+    public PalletContainer(final int id, final PlayerInventory inv, final PacketBuffer buffer) {
+        this(id, inv, getTileEntity(inv, buffer));
     }
 
-    private final IWorldPosCallable worldPosCallable;
-
-    protected PalletContainer(int id, IItemHandlerModifiable playerInventory, IItemHandlerModifiable storageInventory,
-                              PlayerEntity player, BlockPos pos) {
+    public PalletContainer(int id, PlayerInventory playerInventory,
+                           PalletTileEntity te) {
         super(ContainerTypesInit.PALLET_CONTAINER.get(), id);
-        worldPosCallable = IWorldPosCallable.create(player.level, pos);
+        worldPosCallable = IWorldPosCallable.create(te.getLevel(), te.getBlockPos());
 
         //player inventory
         for (int i = 0; i < 3; ++i) {
             for (int j = 0; j < 9; ++j) {
-                this.addSlot(new SlotItemHandler(playerInventory, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
+                this.addSlot(new Slot(playerInventory, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
             }
         }
         //hotbar
         for (int i = 0; i < 9; ++i) {
-            this.addSlot(new SlotItemHandler(playerInventory, i, 8 + i * 18, 142));
+            this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 142));
         }
 
         //storage inventory
         for (int i = 0; i < 2; ++i) {
             for(int j = 0; j < 9; ++j) {
-                this.addSlot(new SlotItemHandler(storageInventory, i + j, j * 18 + 8, i * 18 + 23));
+                this.addSlot(new Slot(playerInventory, i + j, j * 18 + 8, i * 18 + 23));
                 // 8,23
                 // 8,41
             }
@@ -96,6 +92,16 @@ public class PalletContainer extends Container {
             moveItemStackTo(this.getItems().get(index), 36, 40, false);
         }
         return ItemStack.EMPTY;
+    }
+
+    private static PalletTileEntity  getTileEntity(PlayerInventory inv, PacketBuffer buffer) {
+        Objects.requireNonNull(inv, "Inventory cannot be null");
+        Objects.requireNonNull(buffer, "PacketBuffer cannot be null");
+        final TileEntity tileEntity = inv.player.level.getBlockEntity(buffer.readBlockPos());
+        if (tileEntity instanceof PalletTileEntity) {
+            return (PalletTileEntity) tileEntity;
+        }
+        throw new IllegalStateException("TileEntity is not correct!");
     }
 
 }

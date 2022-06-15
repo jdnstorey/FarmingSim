@@ -5,43 +5,42 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.inventory.container.IContainerProvider;
 import net.minecraft.inventory.container.INamedContainerProvider;
-import net.minecraft.inventory.container.SimpleNamedContainerProvider;
-import net.minecraft.item.ItemStack;
-import net.minecraft.loot.LootContext;
-import net.minecraft.loot.LootParameters;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.stats.Stats;
-import net.minecraft.tileentity.ShulkerBoxTileEntity;
+import net.minecraft.loot.conditions.BlockStateProperty;
+import net.minecraft.state.BooleanProperty;
+import net.minecraft.state.DirectionProperty;
+import net.minecraft.state.StateContainer;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.shapes.IBooleanFunction;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nullable;
-import java.util.stream.Stream;
-
 
 public class Pallet extends Block {
 
+    public static final BooleanProperty empty = BooleanProperty.create("empty");
+
+    @Override
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+        super.createBlockStateDefinition(builder);
+        builder.add(empty);
+    }
+
     public Pallet() {
         super(Properties.of(Material.WOOD).strength(2f, 3f)
-                .harvestLevel(0).sound(SoundType.WOOD)
-                .requiresCorrectToolForDrops()
-                .noOcclusion()
-        );
+                .harvestLevel(0).sound(SoundType.WOOD).requiresCorrectToolForDrops().noOcclusion());
+        registerDefaultState(stateDefinition.any().setValue(empty, false));
     }
 
     @Override
@@ -55,17 +54,15 @@ public class Pallet extends Block {
         return TileEntityTypesInit.PALLET_TILE_ENTITY.get().create();
     }
 
+    @SuppressWarnings("deprecation")
     @Override
-    public ActionResultType use(BlockState blockState, World world,
-                                BlockPos blockPos, PlayerEntity player,
-                                Hand hand, BlockRayTraceResult hit) {
-        TileEntity tile = world.getBlockEntity(blockPos);
-        if(tile instanceof PalletTileEntity && player instanceof ServerPlayerEntity) {
-            PalletTileEntity te = (PalletTileEntity) tile;
-            IContainerProvider provider = PalletContainer.getServerContainerProvider(te, blockPos);
-            INamedContainerProvider namedProvider = new SimpleNamedContainerProvider(provider, PalletContainer.title);
-            NetworkHooks.openGui((ServerPlayerEntity) player, namedProvider);
-            player.awardStat(Stats.INTERACT_WITH_FURNACE);
+    public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult rayTrace) {
+        if (world != null && !world.isClientSide()) {
+            TileEntity tileEntity = world.getBlockEntity(pos);
+            if (tileEntity instanceof PalletTileEntity) {
+                NetworkHooks.openGui((ServerPlayerEntity) player, (INamedContainerProvider) tileEntity, pos);
+                return ActionResultType.SUCCESS;
+            }
         }
         return ActionResultType.SUCCESS;
     }
@@ -110,11 +107,15 @@ public class Pallet extends Block {
 
  */
 
-    public static final VoxelShape ALL = Block.box(0, 0, 0, 16, 2, 16);
+    public static final VoxelShape EMPTY = Block.box(0, 0, 0, 16, 2, 16);
+    public static final VoxelShape FULL = Block.box(0, 0, 0, 16, 20.5, 16);
 
     @SuppressWarnings("deprecation")
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader reader, BlockPos pos, ISelectionContext context) {
-        return ALL;
+        if (state.getValue(empty))
+            return EMPTY;
+        else
+            return FULL;
     }
 }

@@ -15,6 +15,6 @@ public class ContainerTypesInit {
 
     //pallet
     public static final RegistryObject<ContainerType<PalletContainer>> PALLET_CONTAINER = CONTAINER_TYPES.register(
-            "pallet", () -> IForgeContainerType.create(PalletContainer::getClientContainer)
+            "pallet", () -> IForgeContainerType.create(PalletContainer::new)
     );
 }
