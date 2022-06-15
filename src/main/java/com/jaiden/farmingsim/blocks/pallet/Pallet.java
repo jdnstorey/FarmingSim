@@ -23,6 +23,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.IBooleanFunction;
+import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
@@ -30,6 +31,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nullable;
+import java.util.stream.Stream;
 
 
 public class Pallet extends Block {
@@ -108,37 +110,11 @@ public class Pallet extends Block {
 
  */
 
+    public static final VoxelShape ALL = Block.box(0, 0, 0, 16, 2, 16);
 
-
-
-
-
-    public VoxelShape makeShape(){
-        VoxelShape shape = VoxelShapes.empty();
-        shape = VoxelShapes.join(shape, VoxelShapes.box(0, 0.09375, 0, 0.125, 0.109375, 1), IBooleanFunction.OR);
-        shape = VoxelShapes.join(shape, VoxelShapes.box(0.875, 0.09375, 0, 1, 0.109375, 1), IBooleanFunction.OR);
-        shape = VoxelShapes.join(shape, VoxelShapes.box(0.4375, 0.09375, 0, 0.5625, 0.109375, 1), IBooleanFunction.OR);
-        shape = VoxelShapes.join(shape, VoxelShapes.box(0, 0, 0.109375, 0.125, 0.015625, 0.890625), IBooleanFunction.OR);
-        shape = VoxelShapes.join(shape, VoxelShapes.box(0.875, 0, 0.109375, 1, 0.015625, 0.890625), IBooleanFunction.OR);
-        shape = VoxelShapes.join(shape, VoxelShapes.box(0.4375, 0, 0.109375, 0.5625, 0.015625, 0.890625), IBooleanFunction.OR);
-        shape = VoxelShapes.join(shape, VoxelShapes.box(0, 0.015625, 0, 0.125, 0.09375, 0.109375), IBooleanFunction.OR);
-        shape = VoxelShapes.join(shape, VoxelShapes.box(0, 0.015625, 0.890625, 0.125, 0.09375, 1), IBooleanFunction.OR);
-        shape = VoxelShapes.join(shape, VoxelShapes.box(0, 0.015625, 0.4375, 0.125, 0.09375, 0.546875), IBooleanFunction.OR);
-        shape = VoxelShapes.join(shape, VoxelShapes.box(0.4375, 0.015625, 0, 0.5625, 0.09375, 0.109375), IBooleanFunction.OR);
-        shape = VoxelShapes.join(shape, VoxelShapes.box(0.875, 0.015625, 0.890625, 1, 0.09375, 1), IBooleanFunction.OR);
-        shape = VoxelShapes.join(shape, VoxelShapes.box(0.875, 0.015625, 0.4375, 1, 0.09375, 0.546875), IBooleanFunction.OR);
-        shape = VoxelShapes.join(shape, VoxelShapes.box(0.875, 0.015625, 0, 1, 0.09375, 0.109375), IBooleanFunction.OR);
-        shape = VoxelShapes.join(shape, VoxelShapes.box(0.4375, 0.015625, 0.890625, 0.5625, 0.09375, 1), IBooleanFunction.OR);
-        shape = VoxelShapes.join(shape, VoxelShapes.box(0.4375, 0.015625, 0.4375, 0.5625, 0.09375, 0.546875), IBooleanFunction.OR);
-        shape = VoxelShapes.join(shape, VoxelShapes.box(0, 0.109375, 0, 1, 0.125, 0.125), IBooleanFunction.OR);
-        shape = VoxelShapes.join(shape, VoxelShapes.box(0, 0.109375, 0.421875, 1, 0.125, 0.546875), IBooleanFunction.OR);
-        shape = VoxelShapes.join(shape, VoxelShapes.box(0, 0.109375, 0.65625, 1, 0.125, 0.78125), IBooleanFunction.OR);
-        shape = VoxelShapes.join(shape, VoxelShapes.box(0, 0.109375, 0.203125, 1, 0.125, 0.328125), IBooleanFunction.OR);
-        shape = VoxelShapes.join(shape, VoxelShapes.box(0, 0.109375, 0.875, 1, 0.125, 1), IBooleanFunction.OR);
-        shape = VoxelShapes.join(shape, VoxelShapes.box(0, 0, 0, 1, 0.015625, 0.109375), IBooleanFunction.OR);
-        shape = VoxelShapes.join(shape, VoxelShapes.box(0, 0, 0.890625, 1, 0.015625, 1), IBooleanFunction.OR);
-
-        return shape;
+    @SuppressWarnings("deprecation")
+    @Override
+    public VoxelShape getShape(BlockState state, IBlockReader reader, BlockPos pos, ISelectionContext context) {
+        return ALL;
     }
-
 }
