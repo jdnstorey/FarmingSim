@@ -1,0 +1,27 @@
+modLoader="javafml" #mandatory
+loaderVersion="[36,)" #mandatory This is typically bumped every Minecraft version by Forge. See our download page for lists of versions.
+license="All rights reserved"
+#issueTrackerURL="https://change.me.to.your.issue.tracker.example.invalid/" #optional
+[[mods]] #mandatory
+modId="farmingsim" #mandatory
+version="${file.jarVersion}" #mandatory
+displayName="Farming Simulator 2022" #mandatory
+#updateJSONURL="https://change.me.example.invalid/updates.json" #optional
+#displayURL="https://change.me.to.your.mods.homepage.example.invalid/" #optional
+logoFile="farmingsim.png" #optional
+credits="Jaiden" #optional
+authors="Jaiden" #optional
+description='''
+Farming Simulator 2022 is a farming simulator mod for Minecraft 1.16.5'''
+[[dependencies.farmingsim]] #optional
+    modId="forge" #mandatory
+    mandatory=true #mandatory
+    versionRange="[36,)" #mandatory
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.examplemod]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.16.5,1.17)"
+    ordering="NONE"
+    side="BOTH"

@@ -1,0 +1,12 @@
+{
+  "item.farmingsim.pallet": "Pallet",
+  "block.farmingsim.pallet": "Pallet",
+
+  "itemGroup.farmingsim_items": "Farming Sim Items",
+  "itemGroup.farmingsim_blocks": "Farming Sim Blocks",
+  "itemGroup.farmingsim_vehicles": "Farming Sim Vehicles",
+  "itemGroup.farmingsim_crops": "Farming Sim Crops",
+  "itemGroup.farmingsim_liquids": "Farming Sim Liquids",
+
+  "container.pallet": "Pallet Storage"
+}
