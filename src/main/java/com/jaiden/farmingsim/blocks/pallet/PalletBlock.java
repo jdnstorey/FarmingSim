@@ -25,12 +25,7 @@ import net.minecraft.world.World;
 public class PalletBlock extends Block {
 
     public static final BooleanProperty EMPTY = BooleanProperty.create("empty");
-    /*
-    0 = nothing
-    1 = wheat
-    2 = ...
-     */
-    public static final IntegerProperty CURRENT = IntegerProperty.create("current", 0, 2);
+    public static final IntegerProperty CURRENT = IntegerProperty.create("current", 0, 10);
     public static final VoxelShape EMPTY_VS = Block.box(0, 0, 0, 16, 2, 16);
     public static final VoxelShape FULL_VS = Block.box(0, 0, 0, 16, 22, 16);
 
@@ -65,11 +60,7 @@ public class PalletBlock extends Block {
     }
 
     private int getInt(SeedBagItem item) {
-        switch (item.getType()) {
-            case WHEAT:
-                return 1;
-        }
-        return 999;
+        return item.getType().getId();
     }
 
     private void cycleProperty(BlockPos pos, BlockState state, World world) {
