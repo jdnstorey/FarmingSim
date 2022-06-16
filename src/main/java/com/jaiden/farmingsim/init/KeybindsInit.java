@@ -11,11 +11,12 @@ import java.awt.event.KeyEvent;
 @OnlyIn(Dist.CLIENT)
 public class KeybindsInit {
     public static KeyBinding exampleKey;
+    public static KeyBinding shop_key;
 
     public static void register(){
-        exampleKey = create("example_key", KeyEvent.VK_H);
+        shop_key = create("shop_key", KeyEvent.VK_BACK_SLASH);
 
-        ClientRegistry.registerKeyBinding(exampleKey);
+        ClientRegistry.registerKeyBinding(shop_key);
     }
 
     private static KeyBinding create(String name, int key){
