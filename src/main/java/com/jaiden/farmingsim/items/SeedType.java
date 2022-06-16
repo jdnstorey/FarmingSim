@@ -1,6 +1,7 @@
 package com.jaiden.farmingsim.items;
 
 public enum SeedType {
+    NONE(0),
     BARLEY(1),
     CANOLA(2),
     CARROTS(3),

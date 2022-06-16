@@ -8,5 +8,9 @@
   "itemGroup.farmingsim_crops": "Farming Sim Crops",
   "itemGroup.farmingsim_liquids": "Farming Sim Liquids",
 
+  "item.farmingsim.example_hoe": "Example Hoe",
+
+  "item.farmingsim.seed_bag": "Seed Bag",
+
   "container.pallet": "Pallet Storage"
 }
