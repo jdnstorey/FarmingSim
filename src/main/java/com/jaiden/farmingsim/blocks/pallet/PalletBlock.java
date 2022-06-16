@@ -60,7 +60,7 @@ public class PalletBlock extends Block {
     }
 
     private int getInt(SeedBagItem item) {
-        return item.getType().getId();
+        return item.getType().getIndex();
     }
 
     private void cycleProperty(BlockPos pos, BlockState state, World world) {

@@ -4,6 +4,7 @@ import com.jaiden.farmingsim.FarmingSim;
 import com.jaiden.farmingsim.items.SeedBagItem;
 import com.jaiden.farmingsim.items.SeedType;
 import com.jaiden.farmingsim.materials.CustomToolMaterial;
+import com.jaiden.farmingsim.util.entisy.betterLists.SimpleList;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.HoeItem;
 import net.minecraft.item.Item;
@@ -28,4 +29,9 @@ public class ItemInit {
             () -> new HoeItem(CustomToolMaterial.EXAMPLE_TOOL, 5, -1, new Item.Properties().tab(FarmingSimCreativeTab.ITEMS))
     );
 
+    public static SimpleList<Item> getAllItems() {
+        SimpleList<Item> ret = new SimpleList<>();
+        ITEMS.getEntries().forEach(b -> ret.append(b.get()));
+        return ret;
+    }
 }
