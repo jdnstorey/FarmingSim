@@ -65,11 +65,7 @@ public class PalletBlock extends Block {
     }
 
     private int getInt(SeedBagItem item) {
-        switch (item.getType()) {
-            case WHEAT:
-                return 1;
-        }
-        return 999;
+        return item.getType().getId();
     }
 
     private void cycleProperty(BlockPos pos, BlockState state, World world) {
