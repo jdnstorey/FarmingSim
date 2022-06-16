@@ -12,5 +12,7 @@
 
   "item.farmingsim.seed_bag": "Seed Bag",
 
-  "container.pallet": "Pallet Storage"
+  "container.pallet": "Pallet Storage",
+
+  "key.farmingsim.example_key": "Example Key"
 }
