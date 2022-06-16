@@ -1,7 +1,6 @@
 {
   "variants": {
-    "": {
-      "model": "farmingsim:block/pallet"
-    }
+    "empty=true": { "model": "farmingsim:block/pallet" },
+    "empty=false": { "model": "farmingsim:block/pallet_full" }
   }
 }

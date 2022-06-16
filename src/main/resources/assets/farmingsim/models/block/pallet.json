@@ -2,7 +2,7 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [64, 64],
 	"textures": {
-		"1": "block/tx",
+		"1": "farmingsim:block/pallet",
 		"particle": "farmingsim:block/pallet"
 	},
 	"elements": [
@@ -290,19 +290,6 @@
 				"west": {"uv": [10.75, 9.5, 11.25, 9.75], "texture": "#1"},
 				"up": {"uv": [11, 6.5, 7, 6], "texture": "#1"},
 				"down": {"uv": [11, 6.5, 7, 7], "texture": "#1"}
-			}
-		},
-		{
-			"name": "VOXELBOX",
-			"from": [0, 0, 0],
-			"to": [16, 2, 16],
-			"faces": {
-				"north": {"uv": [7, 7, 11, 7.5], "texture": "#1"},
-				"east": {"uv": [7, 7.5, 11, 8], "texture": "#1"},
-				"south": {"uv": [0, 8, 4, 8.5], "texture": "#1"},
-				"west": {"uv": [8, 0, 12, 0.5], "texture": "#1"},
-				"up": {"uv": [4, 4, 0, 0], "texture": "#1"},
-				"down": {"uv": [4, 4, 0, 8], "texture": "#1"}
 			}
 		}
 	],
