@@ -3,7 +3,9 @@ package com.jaiden.farmingsim.init;
 import com.jaiden.farmingsim.FarmingSim;
 import com.jaiden.farmingsim.items.SeedBagItem;
 import com.jaiden.farmingsim.items.SeedType;
+import com.jaiden.farmingsim.materials.CustomToolMaterial;
 import net.minecraft.item.BlockItem;
+import net.minecraft.item.HoeItem;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -20,5 +22,10 @@ public class ItemInit {
 
     // Seed Bags
     public static final RegistryObject<Item> SEED_BAG = ITEMS.register("seed_bag", () -> new SeedBagItem(SeedType.WHEAT));
+
+
+    public static final RegistryObject<Item> EXAMPLE_HOE = ITEMS.register("example_hoe",
+            () -> new HoeItem(CustomToolMaterial.EXAMPLE_TOOL, 5, -1, new Item.Properties().tab(FarmingSimCreativeTab.ITEMS))
+    );
 
 }
