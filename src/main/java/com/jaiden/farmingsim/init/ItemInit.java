@@ -1,6 +1,8 @@
 package com.jaiden.farmingsim.init;
 
 import com.jaiden.farmingsim.FarmingSim;
+import com.jaiden.farmingsim.items.SeedBagItem;
+import com.jaiden.farmingsim.items.SeedType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;
@@ -15,5 +17,8 @@ public class ItemInit {
     public static final RegistryObject<Item> PALLET = ITEMS.register("pallet",
             () -> new BlockItem(BlockInit.PALLET.get(),
                     new Item.Properties().tab(FarmingSimCreativeTab.BLOCKS)));
+
+    // Seed Bags
+    public static final RegistryObject<Item> SEED_BAG = ITEMS.register("seed_bag", () -> new SeedBagItem(SeedType.WHEAT));
 
 }
