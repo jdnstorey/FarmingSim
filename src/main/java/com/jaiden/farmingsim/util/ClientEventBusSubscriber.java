@@ -9,8 +9,4 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 @Mod.EventBusSubscriber(modid = FarmingSim.MODID, bus = Bus.MOD, value = Dist.CLIENT)
 public class ClientEventBusSubscriber {
-
-    public static void clientSetup(FMLClientSetupEvent e) {
-        KeybindsInit.register(e);
-    }
 }

@@ -27,7 +27,7 @@ public class InputEvents {
 
     private static void onInput(Minecraft mc, int key, int action){
         if(mc.screen == null && KeybindsInit.exampleKey.consumeClick()){
-            System.out.println("EXAMPLE KEY PRESSED");
+            //open gui
         }
     }
 }

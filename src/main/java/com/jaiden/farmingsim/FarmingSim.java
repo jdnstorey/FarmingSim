@@ -18,6 +18,7 @@ public class FarmingSim
         BlockInit.BLOCKS.register(bus);
         TileEntityTypesInit.TILE_ENTITY_TYPE.register(bus);
         ContainerTypesInit.CONTAINER_TYPES.register(bus);
+        KeybindsInit.register();
 
         MinecraftForge.EVENT_BUS.register(this);
     }

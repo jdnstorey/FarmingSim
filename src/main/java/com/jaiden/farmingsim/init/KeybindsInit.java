@@ -5,7 +5,6 @@ import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 import java.awt.event.KeyEvent;
 
@@ -13,7 +12,7 @@ import java.awt.event.KeyEvent;
 public class KeybindsInit {
     public static KeyBinding exampleKey;
 
-    public static void register(final FMLClientSetupEvent event){
+    public static void register(){
         exampleKey = create("example_key", KeyEvent.VK_H);
 
         ClientRegistry.registerKeyBinding(exampleKey);
