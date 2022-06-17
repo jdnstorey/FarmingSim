@@ -16,12 +16,7 @@ public class ItemInit {
 
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, FarmingSim.MODID);
 
-    //pallet
-    public static final RegistryObject<Item> PALLET = ITEMS.register("pallet",
-            () -> new BlockItem(BlockInit.PALLET.get(),
-                    new Item.Properties().tab(FarmingSimCreativeTab.BLOCKS)));
 
-    // Seed Bags
     public static final RegistryObject<Item> SEED_BAG = ITEMS.register("seed_bag", () -> new SeedBagItem(SeedType.WHEAT));
 
 
