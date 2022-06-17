@@ -1,7 +1,7 @@
 package com.jaiden.farmingsim.init;
 
 import com.jaiden.farmingsim.FarmingSim;
-import com.jaiden.farmingsim.items.SeedBagItem;
+import com.jaiden.farmingsim.items.seedBag.SeedBagItem;
 import com.jaiden.farmingsim.items.SeedType;
 import com.jaiden.farmingsim.materials.CustomToolMaterial;
 import com.jaiden.farmingsim.util.entisy.betterLists.SimpleList;

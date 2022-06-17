@@ -1,15 +1,12 @@
 package com.jaiden.farmingsim.blocks.pallet;
 
 import com.jaiden.farmingsim.init.ItemInit;
-import com.jaiden.farmingsim.items.SeedBagItem;
-import static com.jaiden.farmingsim.items.SeedType.*;
+import com.jaiden.farmingsim.items.seedBag.SeedBagItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
