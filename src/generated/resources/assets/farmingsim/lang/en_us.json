@@ -2,6 +2,12 @@
   "block.farmingsim.pallet": "Pallet",
   "item.farmingsim.example_hoe": "Example Hoe",
   "item.farmingsim.seed_bag": "Seed Bag",
-  "itemGroup.farmingsim_tab": "Techniq",
+  "itemGroup.farmingsim.blocks": "FarmingSim Blocks",
+  "itemGroup.farmingsim.crops": "FarmingSim Crops",
+  "itemGroup.farmingsim.fluids": "FarmingSim Fluids",
+  "itemGroup.farmingsim.items": "FarmingSim Items",
+  "itemGroup.farmingsim.vehicles": "FarmingSim Vehicles",
+  "key.category.farmingsim": "FarmingSim",
+  "key.farmingsim.shop": "Shop",
   "tooltip.farmingsim.hidden": "hold \u00A7eSHIFT\u00A7r for Info!"
 }

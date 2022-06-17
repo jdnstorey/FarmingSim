@@ -3,7 +3,9 @@ package com.jaiden.farmingsim.data.client;
 import com.jaiden.farmingsim.FarmingSim;
 import com.jaiden.farmingsim.init.BlockInit;
 import com.jaiden.farmingsim.init.ItemInit;
+import com.jaiden.farmingsim.init.KeybindsInit;
 import net.minecraft.block.Block;
+import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.fluid.FlowingFluid;
 import net.minecraft.item.Item;
@@ -17,7 +19,13 @@ public class ModLanguageProvider extends LanguageProvider {
 
     @Override
     protected void addTranslations() {
-        add("itemGroup." + FarmingSim.MODID + "_tab", "Techniq");
+        add("itemGroup." + FarmingSim.MODID + ".items", "FarmingSim Items");
+        add("itemGroup." + FarmingSim.MODID + ".blocks", "FarmingSim Blocks");
+        add("itemGroup." + FarmingSim.MODID + ".vehicles", "FarmingSim Vehicles");
+        add("itemGroup." + FarmingSim.MODID + ".crops", "FarmingSim Crops");
+        add("itemGroup." + FarmingSim.MODID + ".fluids", "FarmingSim Fluids");
+        add("key.category." + FarmingSim.MODID, "FarmingSim");
+        add("key." + FarmingSim.MODID + ".shop", "Shop");
         add("tooltip." + FarmingSim.MODID + ".hidden", "hold \u00A7eSHIFT\u00A7r for Info!");
 //        add("tooltip." + Techniq.MOD_ID + ".lunar_panel", TechniqConfig.LUNAR_PANEL.get() + "TE/Tick");
 
