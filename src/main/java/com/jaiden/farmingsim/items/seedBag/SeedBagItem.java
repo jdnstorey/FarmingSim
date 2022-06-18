@@ -66,6 +66,7 @@ public class SeedBagItem extends Item implements INamedContainerProvider {
 
     public void setType(SeedType type) {
         this.type = type;
+        getDefaultInstance().getOrCreateTag().putString("SeedType", type.getIdentifier());
     }
 
     @Override
